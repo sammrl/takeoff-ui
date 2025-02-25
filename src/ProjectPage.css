@@ -1,0 +1,568 @@
+/* Add at the top of the file to prevent horizontal scrolling */
+body, html {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.projects-page {
+    background-color: #1a1a2e; /* Deep navy base */
+    color: #fff;
+    min-height: 100vh;
+    font-family: 'Roboto', sans-serif; /* Modern sans-serif */
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box; /* Ensure padding doesn't create overflow */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(13, 27, 42, 0.95);
+    padding: 1.2rem 2.5rem;
+    margin-bottom: 24px;
+    border-bottom: 2px solid #00eaff;
+    box-shadow: 0 2px 10px rgba(0, 234, 255, 0.15), 0 4px 15px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    border-radius: 8px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: all 0.3s ease;
+  }
+  
+  .header:hover {
+    box-shadow: 0 3px 12px rgba(0, 234, 255, 0.2), 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .header-left,
+  .header-center,
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .header .logo {
+    height: 2.8vw !important;
+    min-height: 30px;
+    max-height: 50px;
+    width: auto;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    filter: drop-shadow(0 0 2px rgba(0, 234, 255, 0.4));
+  }
+  
+  .header .logo:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 4px rgba(0, 234, 255, 0.7));
+  }
+  
+  .create-button {
+    background: linear-gradient(135deg, #00c6fb 0%, #00eaff 100%);
+    color: #0d1b2a;
+    font-weight: 600;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .create-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, #00eaff 0%, #00c6fb 100%);
+  }
+  
+  .create-button:active {
+    transform: translateY(1px);
+  }
+  
+  .order-by {
+    display: flex;
+    align-items: center;
+    background-color: rgba(26, 26, 46, 0.6);
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 234, 255, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .order-by label {
+    margin-right: 0.8rem;
+    font-weight: 500;
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  .order-by select {
+    background-color: rgba(26, 26, 26, 0.7);
+    color: #fff;
+    border: 1px solid rgba(51, 51, 51, 0.6);
+    padding: 0.5em 1em;
+    border-radius: 4px;
+    outline: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300eaff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.7em top 50%;
+    background-size: 0.8em auto;
+    padding-right: 2em;
+  }
+  
+  .order-by select:focus {
+    border-color: rgba(0, 234, 255, 0.9);
+    box-shadow: 0 0 0 2px rgba(0, 234, 255, 0.2);
+  }
+  
+  .status-label {
+    padding: 0.35rem 0.8rem;
+    background: linear-gradient(135deg, rgba(57, 255, 20, 0.8) 0%, rgba(57, 255, 20, 0.9) 100%);
+    color: #000;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.8em;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    box-shadow: 0 0 10px rgba(57, 255, 20, 0.4);
+  }
+  
+  .wallet-button {
+    background: linear-gradient(135deg, #ff2a68 0%, #ff5e93 100%);
+    color: #fff;
+    border: none;
+    padding: 0.55rem 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .wallet-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, #ff5e93 0%, #ff2a68 100%);
+  }
+  
+  .wallet-button:active {
+    transform: translateY(1px);
+  }
+  
+  .content {
+    padding: 2rem;
+  }
+  
+  .projects-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .projects-table th,
+  .projects-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .projects-table th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+  }
+  
+  .projects-table tr:hover {
+    background-color: #333;
+  }
+  
+  .paired-currency {
+    color: #39ff14; /* Use neon green for accent text */
+    font-size: 0.9em;
+  }
+
+  /* Responsive Design */
+  @media screen and (max-width: 768px) {
+    .header {
+      flex-direction: column;
+      padding: 16px;
+      gap: 20px;
+    }
+
+    /* Header with logo and create button */
+    .header-left {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    /* Logo sizing */
+    .logo {
+      height: 32px !important;
+    }
+    
+    /* Order by section */
+    .header-center {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    
+    .order-by {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+    }
+    
+    .order-by select {
+      flex: 1;
+      margin: 0 10px;
+    }
+    
+    /* Live Off label and wallet button */
+    .status-label {
+      width: 100%;
+      text-align: center;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+    
+    .header-right {
+      width: 100%;
+    }
+    
+    .wallet-button {
+      width: 100%;
+      padding: 12px;
+      font-size: 1rem;
+    }
+    
+    /* Project cards need more breathing room */
+    .projects-cards {
+      gap: 24px;
+      margin-top: 12px;
+    }
+  }
+
+  /* Card layout styles for projects cards */
+  .projects-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+  .project-card {
+    position: relative; /* Add this for absolute positioning of rank */
+    background-color: #20232a;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid #00eaff;
+    box-shadow: 0 0 10px #00eaff, 0 2px 8px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    min-height: 20vw;
+    padding-bottom: 1rem; /* Reduced from 30px */
+  }
+  
+  .project-card:hover {
+    transform: scale(1.02);
+  }
+  
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px; /* Reduced from 0 */
+  }
+  
+  .symbol-container {
+    flex-direction: row; /* Change from column to row */
+    gap: 8px;
+    align-items: center;
+  }
+  
+  .card-header h3 {
+    margin: 0;
+    font-size: 1.6em; /* Reduced from 1.8em */
+    text-shadow: 0 0 5px #00eaff; /* Glowing electric blue text effect for headers */
+  }
+  
+  .card-body {
+    padding-top: 0;
+    justify-content: flex-start;
+    margin-top: -75px; /* Increased pull-up */
+    flex-grow: 1; /* Fill available space */
+  }
+  
+  .card-body p {
+    margin: 4px 0;
+    font-size: 0.9em;
+  }
+
+  /* Styling for data rows inside the cards */
+  .card-row {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    width: 100%;
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .card-row:last-child {
+    border-bottom: none;
+  }
+  
+  .card-label {
+    font-weight: bold;
+    color: #00eaff; /* Electric blue color for labels */
+  }
+  
+  .card-value {
+    color: #fff;
+    text-align: right;
+  }
+
+  /* Styling for new card data columns */
+  .card-data {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center;
+    height: 90%;
+    padding: 0px 0; /* Reduced vertical padding */
+    gap: 0px; /* Added to reduce spacing between grid items */
+  }
+  
+  .data-point {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    height: 100%;
+    padding: 0px 0; /* Reduced vertical padding for data points */
+  }
+  
+  .data-label {
+    font-size: 1em; /* Slightly smaller */
+    color: rgba(0, 234, 255, 0.8);
+    margin-bottom: 1px; /* Reduced space */
+  }
+  
+  .data-value {
+    font-size: 1em; /* Reduced from 1.4em */
+    font-weight: bold;
+    color: #fff;
+  }
+
+  /* Styling for token logos in project cards */
+  .token-logo {
+    width: 40px; /* Reduced from 60px */
+    height: 40px; /* Reduced from 60px */
+    padding: 4px;
+    border: 2px solid #00eaff;
+    border-radius: 12px; /* Rounded square instead of circle */
+    background-color: #20232a;
+    box-shadow: 0 0 5px rgba(0, 234, 255, 0.5);
+    margin-top: 0.5vw; /* Remove previous margin */
+    object-fit: cover; /* Ensures the image fills the square properly */
+  }
+
+  .project-rank {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 0.9em;
+    color: rgba(0, 234, 255, 0.8);
+  }
+
+  /* Sort direction toggle */
+  .sort-direction-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 30, 60, 0.6);
+    border: 1px solid rgba(0, 234, 255, 0.3);
+    border-radius: 4px;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    margin-left: 8px;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sort-direction-toggle:hover {
+    background-color: rgba(0, 40, 80, 0.6);
+    border-color: rgba(0, 234, 255, 0.5);
+    box-shadow: 0 0 8px rgba(0, 234, 255, 0.3);
+  }
+
+  .sort-direction-toggle svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: #00eaff;
+    stroke-width: 3px;
+    transition: transform 0.3s ease;
+    position: absolute;
+    opacity: 0.7;
+  }
+
+  .sort-direction-text {
+    font-size: 16px;
+    font-weight: bold;
+    color: #00eaff;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 5px rgba(0, 234, 255, 0.7);
+  }
+
+  .sort-direction-toggle.descending svg {
+    transform: rotate(180deg);
+  }
+
+  /* Add responsive breakpoints for the header */
+  @media (max-width: 900px) {
+    .header {
+      flex-direction: column;
+      gap: 16px;
+      padding: 1rem 1.5rem;
+    }
+    
+    .header-center {
+      flex-direction: column;
+      gap: 16px;
+      width: 100%;
+    }
+    
+    .order-by {
+      width: 100%;
+      justify-content: center;
+    }
+    
+    .status-label {
+      align-self: center;
+    }
+  }
+
+  /* Improve layout for very small screens */
+  @media (max-width: 600px) {
+    .projects-page {
+      padding: 12px;
+    }
+    
+    .content {
+      padding: 1rem;
+    }
+    
+    .header-left, 
+    .header-right {
+      width: 100%;
+      justify-content: center;
+    }
+    
+    /* Make pagination more touch-friendly on mobile */
+    .pagination button {
+      padding: 10px 20px;
+      font-size: 1.1em;
+    }
+  }
+
+  /* Improve header styling for intermediate screen sizes */
+  @media screen and (max-width: 1200px) and (min-width: 901px) {
+    .header {
+      padding: 1rem 1.5rem;
+    }
+    
+    .header-left, 
+    .header-right {
+      flex: 0 0 auto;
+    }
+    
+    .header-center {
+      flex: 1 1 auto;
+      justify-content: center;
+      margin: 0 16px;
+    }
+    
+    /* Improve button styling */
+    .create-button,
+    .wallet-button {
+      padding: 10px 18px;
+      font-size: 0.9em;
+      white-space: nowrap;
+    }
+    
+    .logo {
+      height: 2.5vw !important; /* Slightly smaller logo */
+    }
+    
+    .status-label {
+      padding: 8px 16px;
+      font-size: 0.9em;
+      white-space: nowrap;
+    }
+    
+    .order-by {
+      flex-wrap: nowrap;
+      padding: 0.3rem 0.6rem;
+    }
+    
+    .order-by label {
+      font-size: 0.85em;
+      margin-right: 0.5rem;
+    }
+    
+    .order-by select {
+      padding: 0.4em 0.8em;
+      font-size: 0.85em;
+      min-width: 110px;
+    }
+  }
+
+  /* Add improved tablet layout */
+  @media screen and (max-width: 1024px) and (min-width: 768px) {
+    .header {
+      flex-wrap: wrap;
+      row-gap: 12px;
+      padding: 1rem;
+    }
+    
+    .header-left {
+      order: 1;
+      flex: 1 1 auto;
+    }
+    
+    .header-right {
+      order: 2;
+      flex: 0 0 auto;
+    }
+    
+    .header-center {
+      order: 3;
+      width: 100%;
+      justify-content: center;
+      margin-top: 8px;
+    }
+    
+    /* Crisper buttons for tablet */
+    .create-button, 
+    .wallet-button {
+      padding: 8px 16px;
+      font-size: 0.85em;
+      border-radius: 6px;
+    }
+  }

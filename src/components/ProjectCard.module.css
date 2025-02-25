@@ -1,0 +1,487 @@
+.project_card {
+  position: relative;
+  background-color: #20232a;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #00eaff;
+  box-shadow: 0 0 6px #00eaff, 0 2px 8px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+  display: grid;
+  grid-template-columns: 95px 1fr; /* Adjust left column width only slightly */
+  gap: 12px; /* Reduce gap between left and right sides just a bit */
+  min-height: 8rem;
+  align-items: center;
+  overflow: hidden; /* Important for the pseudo-element effect */
+}
+
+/* Add pseudo-element for lighting effect */
+.project_card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    transparent 35%,
+    rgba(0, 234, 255, 0.1) 35%,
+    rgba(0, 234, 255, 0.2) 40%,
+    transparent 50%,
+    transparent 100%
+  );
+  transform: rotate(45deg);
+  transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.project_card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 15px rgba(0, 234, 255, 0.6), 0 4px 15px rgba(0, 0, 0, 0.6);
+  border-color: rgba(0, 234, 255, 0.9);
+}
+
+.project_card:hover::before {
+  opacity: 1;
+  top: -100%;
+  left: -100%;
+  transition-duration: 0.7s;
+}
+
+/* Left side styling with name and logo */
+.left_container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  gap: 20px;
+  margin-bottom: 16px;
+  position: relative;
+  background: linear-gradient(90deg, 
+    rgba(0, 234, 255, 0.02) 0%,
+    rgba(0, 234, 255, 0.08) 20%, /* Peak blue moved earlier */
+    rgba(0, 234, 255, 0.07) 50%, /* More sustained blue in the middle */
+    rgba(0, 234, 255, 0.05) 85%,
+    rgba(0, 234, 255, 0.02) 100%);
+  border-radius: 20px;
+  padding: 8px 25px 8px 12px; /* Increased right padding */
+  box-sizing: border-box; /* Ensure padding is included in width */
+}
+
+.card_header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0;
+  width: auto;
+  min-width: 150px; /* Ensure minimum width for title */
+}
+
+.card_header h3 {
+  font-size: 1.5rem;
+  color: white; /* Solid white text */
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 0;
+  text-align: left;
+  transition: all 0.3s ease;
+  line-height: 1.2;
+  padding: 4px 0;
+  text-shadow: 0 0 8px rgba(0, 234, 255, 0.8), 0 0 15px rgba(0, 234, 255, 0.5); /* Stronger blue glow */
+  -webkit-background-clip: initial; /* Remove background clipping */
+  background-clip: initial;
+  -webkit-text-fill-color: initial;
+}
+
+/* Logo styling - larger size */
+.token_logo {
+  width: 70px;
+  height: 70px;
+  margin: 0;
+  padding: 4px;
+  border: 2px solid rgba(0, 234, 255, 0.7);
+  box-shadow: 0 0 8px rgba(0, 234, 255, 0.5);
+  border-radius: 12px;
+  background-color: #20232a;
+  object-fit: cover;
+  order: -1; /* Logo first, then title */
+  transition: all 0.3s ease;
+}
+
+/* Right side data container */
+.card_body {
+  grid-column: 1 / -1;
+  width: 100%;
+  margin-top: 0;
+}
+
+/* Data grid layout with fixed column widths */
+.card_data {
+  margin-top: 0;
+  width: 100%;
+}
+
+/* Individual data point styling */
+.data_point {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 0 2px; /* Reduce horizontal padding */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Vertical dividers between data points */
+.data_point:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 25%;
+  height: 50%;
+  width: 1px;
+  background: rgba(0, 234, 255, 0.2);
+}
+
+/* Style data labels with small-caps and semi-bold */
+.data_label {
+  font-size: 0.85em;
+  color: rgba(0, 234, 255, 0.8);
+  margin-bottom: 4px;
+  font-variant: small-caps;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.data_value {
+  font-size: 0.95em; /* Reduce font size slightly */
+  font-weight: bold;
+  color: #fff;
+  white-space: nowrap; /* Prevent wrapping */
+}
+
+/* Premium corner rank style */
+.project_rank {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 0.9em;
+  color: #ffffff;
+  z-index: 3;
+  background-color: rgba(0, 30, 60, 0.6);
+  padding: 4px 8px;
+  border-radius: 4px;
+  border-bottom: 2px solid #00eaff;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  transition: all 0.2s ease;
+}
+
+.project_card:hover .project_rank {
+  background-color: rgba(0, 40, 80, 0.75);
+  border-bottom-color: rgba(0, 234, 255, 0.9);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Change format to Rank: # with the number in electric blue */
+.project_rank::after {
+  content: attr(data-rank);
+  color: #00eaff;
+  margin-left: 3px;
+  font-weight: 600;
+}
+
+/* Add currency symbol ($) to values that need it */
+.currency::before {
+  content: '$';
+  margin-right: 2px;
+  color: rgba(0, 234, 255, 0.8);
+  font-weight: 400;
+}
+
+/* Add styling for positive/negative values */
+.positive {
+  color: #39ff14; /* Neon green for positive change */
+}
+
+.negative {
+  color: #ff2a68; /* Pink/red for negative change */
+}
+
+/* Add styling for "M" (million) suffix for volume */
+.data_value.currency:has(+ "M")::after {
+  content: 'M';
+  margin-left: 2px;
+  color: rgba(0, 234, 255, 0.8);
+  font-weight: 400;
+}
+
+.rank_badge {
+  background-color: rgba(0, 30, 60, 0.6);
+  color: #00eaff;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 1em;
+  border-bottom: 2px solid #00eaff;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 6px rgba(0, 234, 255, 0.2);
+  transition: all 0.2s ease;
+}
+
+.project_card:hover .rank_badge {
+  background-color: rgba(0, 40, 80, 0.75);
+  border-bottom-color: rgba(0, 234, 255, 0.9);
+  box-shadow: 0 0 8px rgba(0, 234, 255, 0.4);
+}
+
+/* (Additional styles for .card-header, .card-data, etc.) */
+
+/* Animation for new cards */
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(0, 234, 255, 0.8), 0 4px 15px rgba(0, 0, 0, 0.7);
+    border-color: rgba(0, 234, 255, 1);
+  }
+}
+
+.new_card {
+  animation: 
+    slideIn 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards,
+    glow 1.5s ease-in-out;
+  transform-origin: center;
+  z-index: 10;
+}
+
+.new_card .rank_badge {
+  animation: glow 1.5s ease-in-out;
+}
+
+/* New container for bottom right rank badge */
+.rank_badge_container {
+  position: absolute;
+  bottom: 12px;
+  right: 16px;
+  z-index: 5;
+}
+
+/* Keep the existing rank badge styling */
+.rank_badge {
+  background-color: rgba(0, 30, 60, 0.6);
+  color: #00eaff;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 1em;
+  border-bottom: 2px solid #00eaff;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 6px rgba(0, 234, 255, 0.2);
+  transition: all 0.2s ease;
+}
+
+.project_card:hover .rank_badge {
+  background-color: rgba(0, 40, 80, 0.75);
+  border-bottom-color: rgba(0, 234, 255, 0.9);
+  box-shadow: 0 0 8px rgba(0, 234, 255, 0.4);
+}
+
+/* Add some styling to make the age display look better */
+.data_point:nth-child(4) .data_value {
+  font-variant-numeric: tabular-nums; /* Use monospace numbers for better alignment */
+  font-size: 0.9em; /* Slightly smaller font for the detailed age format */
+  letter-spacing: -0.2px; /* Tighten spacing slightly */
+}
+
+/* Add responsive design for portrait frames */
+@media (max-width: 1200px) {
+  .card_data {
+    grid-template-columns: repeat(4, 1fr); /* Change to 4 columns on medium screens */
+    row-gap: 12px; /* Add space between rows */
+  }
+  
+  /* Adjust dividers for 4-column layout */
+  .data_point:nth-child(4)::after {
+    display: none; /* Remove divider after Age */
+  }
+  
+  /* Add divider to the right of 24H Volume (7th child) */
+  .data_point:nth-child(7)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 15%;
+    height: 70%;
+    width: 1px;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(0, 234, 255, 0.5) 50%,
+      transparent 100%
+    );
+  }
+  
+  /* Center age vertically */
+  .data_point:nth-child(4) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .data_point:nth-child(4) .data_value {
+    margin-top: 2px; /* Add a little space between label and value */
+  }
+}
+
+/* Mobile view - completely restructure the card */
+@media (max-width: 768px) {
+  /* Card container */
+  .project_card {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 16px !important;
+    gap: 24px !important; /* More space between sections */
+  }
+
+  /* Header section with logo and title */
+  .left_container {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100% !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap: 20px !important; /* Significant gap between logo and title */
+    margin-bottom: 0 !important;
+    background: none !important; /* Remove the background gradient */
+  }
+  
+  /* Logo styling */
+  .token_logo {
+    width: 68px !important;
+    height: 68px !important;
+    margin: 0 !important;
+    flex-shrink: 0 !important;
+  }
+  
+  /* Title container */
+  .card_header {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  /* Title text */
+  .card_header h3 {
+    font-size: 2.5rem !important;
+    transform: none !important;
+    padding: 0 !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Data grid layout - make it properly stacked */
+  .card_body {
+    width: 100% !important;
+    margin-top: 10px !important;
+  }
+  
+  .card_data {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important;
+    width: 100% !important;
+  }
+}
+
+/* Desktop layout fixes - ONLY fix the icon cutoff and data point spacing */
+@media (min-width: 769px) {
+  /* Slightly increase first column width to fit the icon */
+  .project_card {
+    grid-template-columns: 110px 1fr !important; /* Slightly wider left column */
+  }
+  
+  /* Adjust left container to fit properly */
+  .left_container {
+    padding: 6px 60px 6px 6px !important; /* Much more right padding */
+    width: calc(100% + 80px) !important; /* Extend far beyond container */
+    z-index: 1 !important; /* Ensure it stays above other elements */
+    gap: 10px !important; /* Reduced gap */
+    margin-bottom: 0 !important; /* Remove bottom margin */
+  }
+  
+  /* Make logo slightly smaller to fit */
+  .token_logo {
+    width: 68px !important; 
+    height: 68px !important;
+  }
+  
+  /* Keep card_body in its own column */
+  .card_body {
+    grid-column: 2 !important; /* Stay in right column */
+  }
+  
+  /* Keep data points in a single row but make them more compact */
+  .card_data {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    gap: 2px !important; /* Minimal gap between data points */
+  }
+  
+  /* Make individual data points more compact */
+  .data_point {
+    padding: 0 !important;
+    margin: 0 2px !important; /* Minimal margin */
+  }
+  
+  /* Ensure the title has enough room */
+  .card_header {
+    min-width: 180px !important; /* Give more room for title */
+    z-index: 2 !important; /* Keep title above the gradient */
+  }
+
+  /* Enhance hover effect */
+  .project_card:hover .card_header h3 {
+    color: #e6f8ff; /* Slightly blue-tinted white on hover */
+    text-shadow: 0 0 10px rgba(0, 234, 255, 0.9), 0 0 20px rgba(0, 234, 255, 0.7); /* Increased glow on hover */
+  }
+
+  /* Desktop specific title styles */
+  .card_header h3 {
+    padding-left: 2px !important; /* Add a tiny bit of left padding */
+  }
+
+  /* Make the title text size responsive - only for desktop */
+  .card_header h3 {
+    /* clamp(minimum, preferred, maximum) */
+    font-size: clamp(1.1rem, calc(0.9rem + 0.8vw), 1.5rem) !important;
+  }
+}
+
+/* Keep the existing larger font size for mobile */
+@media (max-width: 768px) {
+  /* The mobile font size remains unchanged */
+  .card_header h3 {
+    font-size: 2.5rem !important;
+  }
+}
+
+/* Ensure proper vertical spacing */
+.project_card:hover .card_header h3 {
+  color: #e6f8ff; /* Slightly blue-tinted white on hover */
+  text-shadow: 0 0 10px rgba(0, 234, 255, 0.9), 0 0 20px rgba(0, 234, 255, 0.7); /* Increased glow on hover */
+} 
