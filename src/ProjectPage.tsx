@@ -246,8 +246,8 @@ const ProjectsPage = () => {
   return (
     <div className="projects-page">
       <header className="header">
+        <img src={takeoffLogo} alt="Takeoff Logo" className="header-logo" />
         <div className="header-left">
-          <img src={takeoffLogo} alt="Logo" className="logo" />
           <button className="create-button" onClick={handleCreateClick}>Create</button>
         </div>
         <div className="header-center">

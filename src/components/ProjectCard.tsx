@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './ProjectCard.module.css';
+import { useNavigate } from 'react-router-dom';
 
 interface Project {
   rank: number;
@@ -47,8 +48,25 @@ const formatAge = (timestamp: Date): string => {
 };
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, tokenLogos, isNew = false }) => {
+  const navigate = useNavigate();
+  
+  // Keep determining logo index
+  const logoIndex = (project.rank - 1) % tokenLogos.length;
+  
+  const handleCardClick = () => {
+    navigate(`/coin/${project.symbol.toLowerCase()}`, { 
+      state: { 
+        project,
+        logoSrc: tokenLogos[logoIndex]
+      } 
+    });
+  };
+  
   return (
-    <div className={`${styles.project_card} ${isNew ? styles.new_card : ''}`}>
+    <div 
+      className={`${styles.project_card} ${isNew ? styles.new_card : ''} ${styles.clickable}`}
+      onClick={handleCardClick}
+    >
       {/* Left side with name and logo */}
       <div className={styles.left_container}>
         <div className={styles.card_header}>
@@ -56,7 +74,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, tokenLogos, isNew = 
         </div>
         <img
           className={styles.token_logo}
-          src={tokenLogos[Math.floor(Math.random() * tokenLogos.length)]}
+          src={tokenLogos[logoIndex]}
           alt={`${project.symbol} logo`}
         />
       </div>

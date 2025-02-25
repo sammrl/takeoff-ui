@@ -1,9 +1,32 @@
-#root {
-  width: 100%;
-  height: 100%;
+/* Reset defaults and prevent horizontal scrolling */
+html, body {
   margin: 0;
   padding: 0;
-  text-align: left;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+/* Ensure all elements respect the box model */
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+/* Ensure the app container takes full width */
+#root {
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Force all major containers to respect width boundaries */
+.coin-detail-container {
+  width: 100%;
+  max-width: 100%;
+  padding: 20px;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .logo {

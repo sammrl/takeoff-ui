@@ -552,4 +552,14 @@
   .card_header h3 {
     font-size: 2.5rem !important;
   }
+}
+
+/* Add this to your existing CSS file */
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 18px rgba(0, 234, 255, 0.7), 0 6px 20px rgba(0, 0, 0, 0.6);
 } 

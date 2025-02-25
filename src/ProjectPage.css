@@ -566,3 +566,18 @@ body, html {
       border-radius: 6px;
     }
   }
+
+  /* Add this to restore the logo */
+  .header-logo {
+    display: block;
+    height: 60px;
+    margin: 20px auto;
+  }
+
+  /* Make sure the container doesn't hide the logo */
+  .projects-container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
