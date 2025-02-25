@@ -407,20 +407,20 @@
   }
 }
 
-/* Desktop layout fixes - ONLY fix the icon cutoff and data point spacing */
+/* Desktop layout fixes - Shortened gradient to avoid price overlap */
 @media (min-width: 769px) {
   /* Slightly increase first column width to fit the icon */
   .project_card {
     grid-template-columns: 110px 1fr !important; /* Slightly wider left column */
   }
   
-  /* Adjust left container to fit properly */
+  /* Adjust left container to make it shorter */
   .left_container {
-    padding: 6px 60px 6px 6px !important; /* Much more right padding */
-    width: calc(100% + 80px) !important; /* Extend far beyond container */
-    z-index: 1 !important; /* Ensure it stays above other elements */
-    gap: 10px !important; /* Reduced gap */
-    margin-bottom: 0 !important; /* Remove bottom margin */
+    padding: 6px 30px 6px 6px !important; /* Reduced right padding from 60px to 30px */
+    width: calc(100% + 40px) !important; /* Reduced width extension from +80px to +40px */
+    z-index: 1 !important;
+    gap: 10px !important;
+    margin-bottom: 0 !important;
   }
   
   /* Make logo slightly smaller to fit */
